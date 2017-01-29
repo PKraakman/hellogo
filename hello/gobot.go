@@ -4,8 +4,26 @@ import (
 	"fmt"
 )
 
+type Object map[string]interface{}
+
+type Person Object
+
+
+
 func main(){
-	fmt.Println("hello from go inside hello.go and now from github")
-	fmt.Println("And now with a second line")
-	fmt.Println("Even a third")
+	var persa = Person{"fname":"Pieter","lname":"Kraakman","age":56}
+	var persb = Person{"fname":"Tina","lname":"Bour","age":57}
+
+	persa["spouse"] = persb
+
+	for key := range persa {
+		fmt.Println(key,":",persa[key])
+	}
+
+	wife := persa["spouse"].(Person)
+
+	fmt.Println(wife["lname"])
+
+	fmt.Println(persa["spouse"].(Person)["fname"])
+
 }
